@@ -82,6 +82,6 @@ CREATE TABLE `match_group` (
 CREATE TABLE `match_group_member` (
     `match_group_id` VARCHAR(36) NOT NULL,
     `user_id` VARCHAR(36) NOT NULL,
-    PRIMARY KEY (`match_group_id`, `user_id`)
+    PRIMARY KEY (`match_group_id`, `user_id`),
+    INDEX `user_id_idx`(`user_id`)
 );
-ALTER TABLE match_group_member ADD INDEX user_id_idx(user_id);
