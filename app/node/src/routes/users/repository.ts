@@ -227,7 +227,7 @@ export const getUsersBySkillName = async (
 
 export const getUsersByGoal = async (goal: string): Promise<SearchedUser[]> => {
   const [rows] = await pool.query<RowDataPacket[]>(
-    `SELECT user_id FROM user WHERE goal LIKE ?`,
+    `SELECT user_id FROM user WHERE MATCH(goal) AGAINST(? IN BOOLEAN MODE)`,
     [`%${goal}%`]
   );
   const userIds: string[] = rows.map((row) => row.user_id);
